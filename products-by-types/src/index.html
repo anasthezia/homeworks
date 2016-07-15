@@ -5,7 +5,7 @@
     <title>Товары</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/css/all.css">
+    <link rel="stylesheet" href="css/all.css">
 
 </head>
 <body>
@@ -15,6 +15,11 @@
 
 <script type="text/template" id="productTemplate">
     <!-- Ваш шаблон. Код можно менять тлько внутри этого тега <script>. -->
+    <div class="product-item">
+        <img src="media/products/<%= pic %>" />
+        <p class="product-item__title"><strong><%= name %></strong></p>
+        <p class="product-item__price">Цена: <%= price %>₽</p>
+    </div>
 </script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.13.1/lodash.min.js"></script>
