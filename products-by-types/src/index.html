@@ -15,10 +15,19 @@
 
 <script type="text/template" id="productTemplate">
     <!-- Ваш шаблон. Код можно менять тлько внутри этого тега <script>. -->
-    <div class="product-item">
-        <img src="media/products/<%= pic %>" />
-        <p class="product-item__title"><strong><%= name %></strong></p>
-        <p class="product-item__price">Цена: <%= price %>₽</p>
+    <div class="container">
+         <h2><%=title%></h2>
+         <div class="product-list row">
+            <% _.each(products, function(item) { %>
+                <div class="product-item">
+                <div class="product-item__image">
+                	<img src="media/products/<%=item.pic%>" alt="">
+                </div>
+                    <div class="product-item__title"><%=item.name%></div>
+                    <div class="product-item__price">Цена: <span class="price"><%=item.price%>р</span></div>
+                </div>
+            <% }); %>
+        </div>
     </div>
 </script>
 
