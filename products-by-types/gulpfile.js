@@ -60,6 +60,17 @@ var gulp = require('gulp'), // Сообственно Gulp JS
             .pipe(gulp.dest('./dist/img'));
 
     });
+        gulp.task('copy-media', function() {
+        return gulp.src('src/media/*')
+            .pipe(gulp.dest('./dist/media'));
+    });
+
+    gulp.task('min-media', function() {
+        return gulp.src('src/media/*')
+            .pipe(imagemin())
+            .pipe(gulp.dest('./dist/media'));
+
+    });
 
     // Собираем JS
     gulp.task('scripts', function() {
@@ -113,9 +124,12 @@ var gulp = require('gulp'), // Сообственно Gulp JS
         watch(['./src/img/*.*'], function () {
             gulp.start('copy-images');
         });
+        watch(['./src/media/*.*'], function () {
+            gulp.start('copy-images');
+        });
     });
     // *** Default task
-    gulp.task('default', ['copy-html', 'styles', 'scripts', 'copy-images'] );
-    gulp.task('prod', ['copy-html', 'styles-prod', 'scripts-prod', 'min-images']);
+    gulp.task('default', ['copy-html', 'styles', 'scripts', 'copy-images', 'copy-media'] );
+    gulp.task('prod', ['copy-html', 'styles-prod', 'scripts-prod', 'min-images', 'min-media']);
 
 
