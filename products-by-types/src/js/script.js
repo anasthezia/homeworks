@@ -1,43 +1,43 @@
 'use strict';
 $(function () {
     // Ваш код
-    $.ajax({
+     $.ajax({
         dataType: 'json',
         url: 'products.json',
         beforeSend: function () {
             $.fancybox.showLoading();
         }
 
-    }).done(function (data) {
+        }).done(function (data){
         var types = {
-            sale: 'Распродажа',
-            promo: 'Промо-акция',
-            recommended: 'Рекомендуемые товары'
-        };
+	            sale : "Распродажа",
+	            promo : "Промо-акция",
+	            recommended : "Рекомендуемые товары"
+       		 };
         var sale = [];
-        var promo = [];
-        var recommended = [];
-        data.forEach(function (item) {
-            if (item.type == 'sale') {
-                sale.push(item);
-            } else if (item.type == 'promo') {
-                promo.push(item);
-            } else if (item.type == 'recommended') {
-                recommended.push(item);
-            }
-        });
+		var promo = [];
+		var recommended = [];
+		data.forEach(function(item)  {
+			if (item.type=="sale"){
+				sale.push(item); 
+			} else if (item.type=="promo"){
+				promo.push(item);
+			}else if (item.type=="recommended"){
+				recommended.push(item);
+			}
+		});
 
 
-            var tmpl = _.template(document.getElementById('productTemplate').innerHTML);
+            var tmpl = _.template(document.getElementById( 'productTemplate' ).innerHTML);
 
-            $('#sale').append(tmpl({title: 'Распродажа', products: sale}));
-            $('#promo').append(tmpl({title: 'Промо-акция', products: promo}));
-            $('#recommended').append(tmpl({title: 'Рекомендованные товары', products: recommended}));
+            $( '#sale' ).append( tmpl({ title: "Распродажа", products: sale }) );
+            $( '#promo' ).append( tmpl({ title: "Промо-акция", products: promo }) );
+            $( '#recommended' ).append( tmpl({ title: "Рекомендованные товары", products: recommended }) );
+			})
+        .fail(function() {
+             console.log("Произошла какая-то ошибка");
         })
-        .fail(function () {
-            console.log('Произошла какая-то ошибка');
-        })
-        .always(function () {
+        .always(function(){
             $.fancybox.hideLoading();
         });
 });
